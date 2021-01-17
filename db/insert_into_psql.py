@@ -16,7 +16,7 @@ def insert_into_db(data: pd.DataFrame, db_name: str,
     )
 
     cursor = conn.cursor()
-    print('Создано подключение к БД:', auth.psql_db)
+    print('Создано подключение к БД:', db_name)
     print('Выполнение запроса...')    
 
     for index, row in data.iterrows():
