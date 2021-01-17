@@ -7,6 +7,7 @@ from email.mime.multipart import MIMEMultipart
 def send_mail(text: str, work_smtp: str, addr_from: str, 
               addr_to: str, paswd: str):
     """Отправка письма через SMTP-сервер, где:
+        - text = текст письма,
         - work_smtp = почтовый сервер, например, mail.smtp.ru,
         - addr_from = адрес отправителя,
         - addr_to = адрес получателя,
