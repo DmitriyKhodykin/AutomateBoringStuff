@@ -1,22 +1,18 @@
 # Импорты
-
-## Базы данных
-import psycopg2 as psql
-
-## Регистрационные данные
-from auth import auth
+import psycopg2 as psql     # Базы данных
+import pandas as pd         # Таблицы и фильтры
 
 
-def insert_into_db(data: PandasDataFrame, col_list: list, table_db: str):
-    """Вставляет в таблицу базы данных PostgreSQL N-строк из внешнего 
-    фрейма данных - data - по строковым наименованиям столбцов - col_list"""
+def insert_into_db(data: pd.DataFrame, db_name: str,
+                  usr_name: str, pswd: str, host_name: str):
+    """Вставляет данные из data в table БД"""
 
     # Авторизация в базе данных
     conn = psql.connect(
-        dbname=auth.psql_db,
-        user=auth.psql_user,
-        password=auth.psql_passwd,
-        host='localhost'
+        dbname=db_name,
+        user=usr_name,
+        password=pswd,
+        host=host_name
     )
 
     cursor = conn.cursor()
@@ -24,14 +20,18 @@ def insert_into_db(data: PandasDataFrame, col_list: list, table_db: str):
     print('Выполнение запроса...')    
 
     for index, row in data.iterrows():
-        for i in col_list:
-            values = (
-                row[i]
-            )
+        values = (
+            row['col1'],
+            row['col2'],
+            f"{row['col_date']}"
+        )
 
         cursor.execute(
-            f"INSERT INTO {table_db} ({col_list}) VALUES ({'s,' * len(col_list)})",
-            values
+            """
+            INSERT INTO 
+            table_name (col1, col2, col_date) 
+            VALUES (%s, %s, %s)
+            """, values
         )
 
     conn.commit()
