@@ -8,21 +8,22 @@ import cv2                          # OpenCV
 
 def show_pic(addr_pic: str):
     """Визуализирует единичное изображение
-    по адресу на локальном ПК"""
-    
+    по адресу на локальном ПК
+    """
     img_cb = cv2.imread(addr_pic, cv2.IMREAD_GRAYSCALE)
-    plt.title(id_pic)
+    plt.title('id_pic')
     plt.imshow(img_cb);
 
 
 def show_pic_bylink(url: str):
     """Визуализирует единичное изображение
-    по адресу из url"""
-    
-  resp = urllib.urlopen(url)
-  img = np.asarray(bytearray(resp.read()), dtype="uint8")
-  img = cv2.imdecode(img, cv2.IMREAD_GRAYSCALE)
-  plt.imshow(img);
+    по адресу из url
+    """
+    resp = urllib.urlopen(url)
+    img = np.asarray(bytearray(resp.read()), dtype="uint8")
+    img = cv2.imdecode(img, cv2.IMREAD_GRAYSCALE)
+    plt.title('id_pic')
+    plt.imshow(img);
 
     
 def random_sample_bylink(df. pd.DataFrame, rows=3, columns=4):
