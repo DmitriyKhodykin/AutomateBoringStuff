@@ -1,6 +1,7 @@
 # Импорты
 import pandas as pd                 # Фреймы данных
 import matplotlib.pyplot as plt     # ДатаВиз
+import seaborn as sns
 import numpy as np                  # Массивы и вычисления
 import urllib.request as urllib     # Обработка url-ссылок
 import cv2                          # OpenCV
