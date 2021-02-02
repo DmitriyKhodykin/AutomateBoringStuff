@@ -1,6 +1,6 @@
 # Импорты
 import cv2
-from mtcnn.mtcnn import MTCNN  # Детектор лиц
+from mtcnn.mtcnn import MTCNN       # Детектор лиц
 import warnings
 
 
